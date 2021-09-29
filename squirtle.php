@@ -1,5 +1,5 @@
 <?php
-class Water extends Energytype {
+class Water extends pokemon {
     public function __construct($name, $Hitpoints, $Health, $AttackOne, $AttackTwo, $Weakness, $Resistance)
 {
     $energytype = 'water';
