@@ -13,4 +13,4 @@ require 'squirtle.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poke Battle </title>
 </head>
-<body style="background-color:powderblue;">
+<body style="background-color:black;">

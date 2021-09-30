@@ -10,4 +10,3 @@ class Resistance
         $this->value = $value;
     }
 }
-?>

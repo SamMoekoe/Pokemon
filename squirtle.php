@@ -1,9 +1,12 @@
 <?php
-class Water extends pokemon {
-    public function __construct($name, $Hitpoints, $Health, $AttackOne, $AttackTwo, $Weakness, $Resistance)
+class Weakness
 {
-    $energytype = 'water';
-    parent::__construct($name, $energytype, $hitpoints, $health, $attackOne, $attackTwo, $weakness, $resistance);
-}
+    public $energyType;
+    public $value;
 
+    public function __construct($energyType, $value)
+    {
+        $this->energyType = $energyType;
+        $this->value = $value;
+    }
 }
