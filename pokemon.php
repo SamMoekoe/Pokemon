@@ -1,13 +1,13 @@
 <?php
 class pokemon { 
    public $name;
-   public $energytype ;
-   public $hitpoints ;
-   public $health;
-   public $attackOne;
-   public $attackTwo;
-   public $weakness;
-   public $resistance;
+   protected $energytype ;
+   protected $hitpoints ;
+   protected $health;
+   protected $attackOne;
+   protected $attackTwo;
+   protected $weakness;
+   protected $resistance;
 
    public function __construct($energyType, $name, $hitpoints, $weakness, $resistance, $attacks)
    {
@@ -30,7 +30,7 @@ class pokemon {
          * hij stuurt de value van de damage mee en de pokemon die aangevallen wordt.
          */
         public function attack($attackPokemon, $attack, $pokemon){
-            echo "<br>". $this->name . " valt " . $pokemon->name . " aan met de " . $attack->name;
+            echo "<br>". $this->name . " attacks " . $pokemon->name . " with " . $attack->name;
             $this->damage($attack->damage, $pokemon);
         }
         /**
@@ -61,22 +61,21 @@ class pokemon {
          * de function getPopulationHealth kijkt hoeveel hp de pokemon nog heeft en of die nog leeft.
          * hij krijgt de damage mee en de verdedigende pokemon.
          * als de pokemon zijn health (hitpoints) minder is dan de damage die word gedaan dan worden de hitpoints van de pokemon naar 0 gezet. (dood).
-         * * dan echo die de naam van de verdedigende pokemon "is uitgeschakeld". 
-         * anders (pokemon zijn health word in variabel gezet) als de verdedigende pokemon zijn hitpoints meer is dan damage dan haalt die de damage van de pokemon zijn hitpoints af.
+         * * dan echo die de naam van de verdedigende pokemon "Has fainted". 
+         * anders (pokemon zijn health word in variabel gezet) als de verdedigende pokemon zijn hitpoints meer is dan de damage die wordt gedaan dan haalt die de damage van de pokemon zijn hitpoints af.
          * dan laat die de aantal hitpoints nog zien van de verdedigende pokemon met een echo.
-         * als de hitpoints 0 is dan echo naam van verdedigende pokemon met "die is uitgeschakeld". 
          */
 
         private function getPopulationHealth($damage , $pokemon){
             if($pokemon->hitPoints < $damage){
-            echo "<br>".$pokemon->name . "is uitegschakeld";
+            echo "<br>".$pokemon->name . "fainted";
                 $pokemon->hitPoints = 0;
             }else{
                 $pokemon->hitPoints = $pokemon->hitPoints - $damage;
-                echo "<br>". $pokemon->name . " heeft nog " . $pokemon->hitPoints . " hp";
+                echo "<br>". $pokemon->name . " has " . $pokemon->hitPoints . " hp";
             }
             if($pokemon->hitPoints == 0){
-                echo "<br>". $pokemon->name . " is uitgeschakeld";
+                echo "<br>". $pokemon->name . " has fainted";
                 
             }
         }

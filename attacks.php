@@ -15,5 +15,4 @@ class Attack
         return json_encode($this);
     }
 
-
 }

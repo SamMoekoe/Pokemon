@@ -1,5 +1,5 @@
 <?php
-class Weaknesses
+class Weakness
 {
     public $energyType;
     public $value;
