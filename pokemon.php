@@ -8,6 +8,7 @@ class pokemon {
    protected $attackTwo;
    protected $weakness;
    protected $resistance;
+   public static $populationHealth = 0;
 
    public function __construct($energyType, $name, $hitpoints, $weakness, $resistance, $attacks)
    {
@@ -29,9 +30,9 @@ class pokemon {
          * hij haalt de aanvallende pokemon op, de verdedigende en welke attack die gebruikt.
          * hij stuurt de value van de damage mee en de pokemon die aangevallen wordt.
          */
-        public function attack($attackPokemon, $attack, $pokemon){
-            echo "<br>". $this->name . " attacks " . $pokemon->name . " with " . $attack->name;
-            $this->damage($attack->damage, $pokemon);
+        public function attack($attack, $target){
+            
+            return $this->damage($attack->damage, $target);
         }
         /**
          *  function damage
@@ -43,22 +44,22 @@ class pokemon {
          * * op het laatst echo die de aantal damage die die heeft gedaan op de verdedigende pokemon.
          */
 
-        public function damage($damage, $pokemon){
-            foreach($pokemon->weakness as $weakness){
+        public function damage($damage, $target){
+            foreach($target->weakness as $weakness){
                 if($weakness->energyType == $this->energyType){
                     $damage = $damage * $weakness->value;  
                 }
             }
-            foreach($pokemon->resistance as $resistance){
+            foreach($target->resistance as $resistance){
                 if($this->energyType == $resistance->energyType){
                     $damage = $damage - $resistance->value;
                 }
             }
-            echo "<p> It dealt " . $damage . " damage to " . $pokemon->name . "</p>";
-            $this->getPopulationHealth($damage , $pokemon);
+            $this->updatePopulationHealth($damage , $target);
+            return $damage;
         }
         /**
-         * de function getPopulationHealth kijkt hoeveel hp de pokemon nog heeft en of die nog leeft.
+         * de function updatePopulationHealth kijkt hoeveel hp de pokemon nog heeft en of die nog leeft.
          * hij krijgt de damage mee en de verdedigende pokemon.
          * als de pokemon zijn health (hitpoints) minder is dan de damage die word gedaan dan worden de hitpoints van de pokemon naar 0 gezet. (dood).
          * * dan echo die de naam van de verdedigende pokemon "Has fainted". 
@@ -66,19 +67,19 @@ class pokemon {
          * dan laat die de aantal hitpoints nog zien van de verdedigende pokemon met een echo.
          */
 
-        private function getPopulationHealth($damage , $pokemon){
-            if($pokemon->hitPoints < $damage){
-            echo "<br>".$pokemon->name . "fainted";
-                $pokemon->hitPoints = 0;
+        private function updatePopulationHealth($damage , $target){
+            if($target->hitPoints < $damage){
+                $target->hitPoints = 0;
+                console.log($populationHealth);
             }else{
-                $pokemon->hitPoints = $pokemon->hitPoints - $damage;
-                echo "<br>". $pokemon->name . " has " . $pokemon->hitPoints . " hp";
+                $target->hitPoints = $target->hitPoints - $damage;
             }
-            if($pokemon->hitPoints == 0){
-                echo "<br>". $pokemon->name . " has fainted";
-                
+            if($target->hitPoints == 0){   
+                $target->death();
             }
+            
         }
+        
 
 }
 
