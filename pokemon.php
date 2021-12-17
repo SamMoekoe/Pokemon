@@ -1,5 +1,5 @@
 <?php
-class pokemon { 
+class Pokemon { 
    public $name;
    protected $energytype ;
    protected $hitpoints ;
@@ -19,10 +19,14 @@ class pokemon {
        $this->weakness = $weakness;
        $this->resistance = $resistance;
        $this->attacks = $attacks;
-       
+       Pokemon::$populationHealth++;
    }
     public function __toString() {
         return json_encode($this);
+    }
+    public function death()
+    {
+        Pokemon::$populationHealth--;
     }
     /**
          *  function attack
@@ -70,7 +74,6 @@ class pokemon {
         private function updatePopulationHealth($damage , $target){
             if($target->hitPoints < $damage){
                 $target->hitPoints = 0;
-                console.log($populationHealth);
             }else{
                 $target->hitPoints = $target->hitPoints - $damage;
             }

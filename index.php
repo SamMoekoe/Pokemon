@@ -21,11 +21,9 @@ require 'Attacks.php';
     <div class='container'><center>  
         <?php
         $pikachu = new Pikachu();
-        $pikachu->increase();
 
         $charmeleon = new Charmeleon();
-        $charmeleon->increase();
-        echo "the amount of pokemon alive is: ", pokemon::$populationHealth, "<br>";
+        echo "the amount of pokemon alive is: ", Pokemon::$populationHealth, "<br>";
         for ($i=0; $i < 2; $i++) { 
             $pikaAttack = $pikachu->attacks[$i];
             echo "<br>". $pikachu->name . " attacks " . $charmeleon->name . " with " . $pikaAttack->name;
@@ -38,7 +36,7 @@ require 'Attacks.php';
             echo "<br>". $pikachu->name . " has " . $pikachu->hitPoints . " hp";
         }
         echo "<br>". $pikachu->name . " has fainted <br><br>";
-        echo "the amount of pokemon alive is: ", pokemon::$populationHealth;
+        echo "the amount of pokemon alive is: ", Pokemon::$populationHealth;
         
         ?>
     </div></center> 	

@@ -19,14 +19,6 @@ class Pikachu extends Pokemon
 
         parent::__construct($energyType, $name, $hitpoints, $weaknesses, $resistances, $attacks);
     }
-    public function increase()
-    {
-        parent::$populationHealth++;
-    }
-    public function death()
-    {
-        parent::$populationHealth--;
-    }
 }
 
 
